@@ -1,0 +1,303 @@
+{
+    "Version": "2019-10-30",
+    "StartAction": "9118e2fb-c62f-4c29-9eff-e93da91cac29",
+    "Metadata": {
+        "entryPointPosition": {
+            "x": 40,
+            "y": 40
+        },
+        "ActionMetadata": {
+            "dde23aa2-75f5-4d02-b08c-14f44fa43b4d": {
+                "position": {
+                    "x": 671.2,
+                    "y": 188.8
+                },
+                "dynamicParams": []
+            },
+            "fbb706b1-674c-422c-9859-b78dff7de155": {
+                "position": {
+                    "x": 1112.8,
+                    "y": 160
+                },
+                "parameters": {
+                    "ViewResource": {
+                        "Id": {
+                            "displayName": "Confirmation"
+                        }
+                    },
+                    "InvocationTimeLimitSeconds": {
+                        "unit": 1
+                    },
+                    "ViewData": {
+                        "AttributeBar": {
+                            "useJson": true
+                        },
+                        "Next": {
+                            "useJson": true
+                        }
+                    }
+                }
+            },
+            "31aa4fee-6480-495e-b003-bbf5b4ab1cea": {
+                "position": {
+                    "x": 1394.4,
+                    "y": 518.4
+                }
+            },
+            "dffdf5f8-04f2-4880-a6dc-b18fbddf61f7": {
+                "position": {
+                    "x": 329.6,
+                    "y": 210.4
+                },
+                "parameters": {
+                    "ViewResource": {
+                        "Id": {
+                            "displayName": "Cards"
+                        }
+                    },
+                    "InvocationTimeLimitSeconds": {
+                        "unit": 1
+                    },
+                    "ViewData": {
+                        "AttributeBar": {
+                            "useJson": true
+                        },
+                        "Back": {
+                            "useJson": true
+                        },
+                        "Cards": {
+                            "useJson": true
+                        },
+                        "NoMatchFound": {
+                            "useJson": true
+                        }
+                    }
+                }
+            },
+            "9118e2fb-c62f-4c29-9eff-e93da91cac29": {
+                "position": {
+                    "x": 42.4,
+                    "y": 217.6
+                }
+            }
+        },
+        "Annotations": [],
+        "name": "ac_webcalling_SBSguide_view",
+        "description": "",
+        "type": "contactFlow",
+        "status": "saved",
+        "hash": {}
+    },
+    "Actions": [{
+        "Parameters": {
+            "Attributes": {
+                "actionName": "$.Views.ViewResultData.actionName"
+            },
+            "TargetContact": "Current"
+        },
+        "Identifier": "dde23aa2-75f5-4d02-b08c-14f44fa43b4d",
+        "Type": "UpdateContactAttributes",
+        "Transitions": {
+            "NextAction": "fbb706b1-674c-422c-9859-b78dff7de155",
+            "Errors": [{
+                "NextAction": "31aa4fee-6480-495e-b003-bbf5b4ab1cea",
+                "ErrorType": "NoMatchingError"
+            }]
+        }
+    }, {
+        "Parameters": {
+            "ViewResource": {
+                "Id": "cards",
+                "Version": "Latest"
+              },
+            "ViewData": {
+                "Heading": "Your bank account applicatiom has been submitted",
+                "AttributeBar": [{
+                    "Label": "Full Name",
+                    "Value": "$.Attributes.name"
+                }, {
+                    "Label": "Email",
+                    "Value": "$.Attributes.email",
+                    "Copyable": true
+                }, {
+                    "Label": "Reason for Call",
+                    "Value": "$.Attributes.reason"
+                }, {
+                    "Label": "Message",
+                    "Value": "$.Attributes.message"
+                }],
+                "Next": {
+                    "Label": "Close this workflow"
+                },
+                "SubHeading": "You will be receiving a confirmation email shortly. Next steps: Upload receipts by following the link in the email"
+            },
+            "InvocationTimeLimitSeconds": "300"
+        },
+        "Identifier": "fbb706b1-674c-422c-9859-b78dff7de155",
+        "Type": "ShowView",
+        "Transitions": {
+            "NextAction": "31aa4fee-6480-495e-b003-bbf5b4ab1cea",
+            "Conditions": [{
+                "NextAction": "dffdf5f8-04f2-4880-a6dc-b18fbddf61f7",
+                "Condition": {
+                    "Operator": "Equals",
+                    "Operands": ["Next"]
+                }
+            }],
+            "Errors": [{
+                "NextAction": "31aa4fee-6480-495e-b003-bbf5b4ab1cea",
+                "ErrorType": "NoMatchingCondition"
+            }, {
+                "NextAction": "31aa4fee-6480-495e-b003-bbf5b4ab1cea",
+                "ErrorType": "NoMatchingError"
+            }, {
+                "NextAction": "31aa4fee-6480-495e-b003-bbf5b4ab1cea",
+                "ErrorType": "TimeLimitExceeded"
+            }]
+        }
+    }, {
+        "Parameters": {},
+        "Identifier": "31aa4fee-6480-495e-b003-bbf5b4ab1cea",
+        "Type": "DisconnectParticipant",
+        "Transitions": {}
+    }, {
+        "Parameters": {
+            "ViewResource": {
+                "Id": "cards",
+                "Version": "Latest"
+            },
+            "ViewData": {
+                "AttributeBar": [{
+                    "Label": "Full Name",
+                    "Value": "$.Attributes.name"
+                }, {
+                    "Label": "Email",
+                    "Value": "$.Attributes.email",
+                    "Copyable": true
+                }, {
+                    "Label": "Reason for Call",
+                    "Value": "$.Attributes.reason"
+                }, {
+                    "Label": "Message",
+                    "Value": "$.Attributes.message"
+                }],
+                "Back": {
+                    "Label": "Back"
+                },
+                "Cards": [{
+                    "Summary": {
+                        "Id": "new_account",
+                        "Icon": "Applications",
+                        "Heading": "Open a new account"
+                    },
+                    "Detail": {
+                        "Heading": "Open a new account",
+                        "Description": "Use this flow for customers that wish to open a new account. This workflow usually takes 1-2 minutes",
+                        "Actions": ["Open Account", "Something else"]
+                    }
+                }, {
+                    "Summary": {
+                        "Id": "close_account",
+                        "Icon": "Book",
+                        "Heading": "Close an account",
+                        "Description": "Close a customers account"
+                    },
+                    "Detail": {
+                        "Heading": "Close an account",
+                        "Sections": {
+                            "TemplateString": "<p>Close a customers account</p>"
+                        }
+                    }
+                }, {
+                    "Summary": {
+                        "Id": "check_balancet",
+                        "Icon": "Piggy Bank",
+                        "Heading": "Check Balance",
+                        "Description": "Check the balance for a customer account"
+                    },
+                    "Detail": {
+                        "Heading": "Close an account",
+                        "Sections": {
+                            "TemplateString": "<p>Close a customers account</p>"
+                        }
+                    }
+                }, {
+                    "Summary": {
+                        "Id": "financial_check",
+                        "Icon": "MRI",
+                        "Heading": "Financial Health Check",
+                        "Description": "Start a financial health check"
+                    },
+                    "Detail": {
+                        "Heading": "Close an account",
+                        "Sections": {
+                            "TemplateString": "<p>Close a customers account</p>"
+                        }
+                    }
+                }, {
+                    "Summary": {
+                        "Id": "complaint",
+                        "Icon": "Thumbs Down",
+                        "Heading": "Raise a Complaint"
+                    },
+                    "Detail": {
+                        "Heading": "Raise a Complaint",
+                        "Description": "Use this flow for customers that wish to make a formal complaint. This workflow usually takes 1-2 minutes",
+                        "Sections": {
+                            "TemplateString": "<TextContent>Steps:<ol><li>Customer provides the nature of the complaint</li><li>Customer provides details of the issue:- date, time, reason</li><li>Customer receives feedback from complaints team</li></ol></TextContent>"
+                        },
+                        "Actions": ["Create a new Complaint", "Something else"]
+                    }
+                }],
+                "Heading": "\"$.Attributes.name may be contacting about...\"",
+                "NoMatchFound": {
+                    "Label": "Can't find match?"
+                }
+            },
+            "InvocationTimeLimitSeconds": "300"
+        },
+        "Identifier": "dffdf5f8-04f2-4880-a6dc-b18fbddf61f7",
+        "Type": "ShowView",
+        "Transitions": {
+            "NextAction": "31aa4fee-6480-495e-b003-bbf5b4ab1cea",
+            "Conditions": [{
+                "NextAction": "dde23aa2-75f5-4d02-b08c-14f44fa43b4d",
+                "Condition": {
+                    "Operator": "Equals",
+                    "Operands": ["ActionSelected"]
+                }
+            }, {
+                "NextAction": "dde23aa2-75f5-4d02-b08c-14f44fa43b4d",
+                "Condition": {
+                    "Operator": "Equals",
+                    "Operands": ["Back"]
+                }
+            }, {
+                "NextAction": "dde23aa2-75f5-4d02-b08c-14f44fa43b4d",
+                "Condition": {
+                    "Operator": "Equals",
+                    "Operands": ["NoMatchFound"]
+                }
+            }],
+            "Errors": [{
+                "NextAction": "dde23aa2-75f5-4d02-b08c-14f44fa43b4d",
+                "ErrorType": "NoMatchingCondition"
+            }, {
+                "NextAction": "31aa4fee-6480-495e-b003-bbf5b4ab1cea",
+                "ErrorType": "NoMatchingError"
+            }, {
+                "NextAction": "31aa4fee-6480-495e-b003-bbf5b4ab1cea",
+                "ErrorType": "TimeLimitExceeded"
+            }]
+        }
+    }, {
+        "Parameters": {
+            "FlowLoggingBehavior": "Enabled"
+        },
+        "Identifier": "9118e2fb-c62f-4c29-9eff-e93da91cac29",
+        "Type": "UpdateFlowLoggingBehavior",
+        "Transitions": {
+            "NextAction": "dffdf5f8-04f2-4880-a6dc-b18fbddf61f7"
+        }
+    }]
+}

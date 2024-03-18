@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<meta http-equiv= "Content-Security-Policy" content="default-src blob: data: gap: wss: 'unsafe-inline' 'unsafe-eval' 'self' *.chime.aws *.cloudfront.net *.amazonaws.com;">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 36px;
+        }
+        section {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+        input[type="text"], input[type="email"], select, textarea {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Amazon Connect Web Calling and Video experience</h1>
+    </header>
+    
+    <section id="about">
+        <h2>Omnichannel customer experience</h2>
+        <p>Amazon Connect’s in-app, web, and video calling capabilities make it easy to deliver personalized voice and video experiences in your websites and mobile applications. Using the fully managed communication widget or SDK, you can implement Connect’s in-app, web, and video calling capabilities with as little as a single line of code. These voice and video features enable customers to contact you without ever having to leave your web or mobile application </p>
+        <p><a href="https://aws.amazon.com/connect/" target="_blank">Learn more&nbsp;»</a></p> 
+    </section>
+    
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form id="contact-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="reason">Contact Reason:</label>
+            <select id="reason" name="reason">
+                <option value="Open a new account">Open a new account</option>
+                <option value="Financial Health Check">Financial Health Check</option>
+                <option value="Raise a Complaint">Raise a Complaint</option>
+                <option value="Other">Other</option>
+            </select>
+            
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="2" required></textarea>
+            <button type="button" id="submit-button">Submit</button>
+        </form>
+        <p id="thank-you-message" style="display: none;">Thank you for contacting us! Please click on Phone icon below to call us</p>
+        <p id="error-message" style="display: none;">Oops, something went wrong. Please try again later.</p>
+
+    </section>
+    <script>
+
+        var jwtToken;
+        var data = {
+                name: "name",
+                email: "email@email.com",
+                reason: "reason",
+                message: "message"
+            };
+
+        document.getElementById("submit-button").addEventListener("click", function() {
+            const form = document.getElementById("contact-form");
+            const name = form.elements.name.value;
+            const email = form.elements.email.value;
+            const reason = form.elements.reason.value;
+            const message = form.elements.message.value;
+
+            data = {
+                name: name,
+                email: email,
+                reason: reason,
+                message: message
+            };
+            document.getElementById("contact-form").style.display = "none";
+            document.getElementById("thank-you-message").style.display = "block";
+
+            /* Your Connect Widget starts here */
+
+
+
+
+
+
+
+
+
+            /* Your Connect Widget ends here */
+    
+            /* Your API endpoint goes here */
+            const apiEndpoint = "https://aaaaaaaaaa.execute-api.eu-west-2-1.amazonaws.com/prod/";
+            /* Your API endpoint goes here */   
+            amazon_connect('authenticate', function (callback) {
+                window.fetch(apiEndpoint, {
+                            method: "POST", // Replace with the appropriate HTTP method (GET, POST, etc.)
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(data)  
+                        }
+                        ).then(res => {
+                    res.json().then(data => {
+                    callback(data.token);
+                });
+                });
+            });
+        });
+
+  </script>
+
+</body>
+</html>
