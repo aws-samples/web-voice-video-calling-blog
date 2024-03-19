@@ -60,28 +60,14 @@ cdk deploy
 `AcWebCallingStack.Endpoint8024A810 = https://aaaaaaaa.execute-api.<region>.amazonaws.com/prod/` (Your Amazon API Gateway)
 `AcWebCallingStack.websiteURL =  https://aaaaaa.cloudfront.net` (Your Amazon CloudFront  website url)
 
-
 ## Usage
 After the stack is deployed, please follow the steps outlined in blog post **Securely pass customer context to agents using Amazon Connect in-app, web, and video calling**
 
-## Useful commands
-
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `cdk deploy`      deploy this stack to your default AWS account/region
-* `cdk diff`        compare deployed stack with current state
-* `cdk synth`       emits the synthesized CloudFormation template
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+## Clean up
+From the root directory of the source code, run:
+```
+cdk destroy
+```
 
 ## Security
 See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
