@@ -61,7 +61,7 @@ cdk deploy
 `AcWebCallingStack.websiteURL =  https://aaaaaa.cloudfront.net` (Your Amazon CloudFront  website url)
 
 ## Usage
-After the stack is deployed, please follow the steps outlined in blog post **Securely pass customer context to agents using Amazon Connect in-app, web, and video calling**
+After the stack is deployed, please follow the steps outlined in blog post [**Securely pass customer context to agents using Amazon Connect in-app, web, and video calling**](https://aws.amazon.com/blogs/contact-center/securely-pass-the-customer-information-to-agent-using-amazon-connect-in-app-web-and-video-calling/)
 
 ## Clean up
 From the root directory of the source code, run:
