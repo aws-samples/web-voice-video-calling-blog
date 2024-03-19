@@ -1,4 +1,4 @@
-# Customer Profiles Export Demo
+# Securely pass customer context using Amazon Connect in-app, web, and video calling
 
 ## Introduction
 This project deploys a sample use case of a customer initiating web and video calls from a webpage. The website also demonstrate how to transfer customer information to agents using Amazon Connect in-app, web, and video calling.
