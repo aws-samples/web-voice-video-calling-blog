@@ -34,9 +34,8 @@ cdk bootstrap aws://ACCOUNT_ID/AWS_REGION
 ```
 
 2. Using Git, clone the repository from GitHub.
-(Once published in github, please use the below)
 ```bash
-git clone https://github.com/aws-samples/amazon-connect-voice-video-web-calling.git
+git clone https://github.com/aws-samples/web-voice-video-calling-blog.git
 ```
 
 3. Install the dependencies for the CDK project and AWS Lambda functions
