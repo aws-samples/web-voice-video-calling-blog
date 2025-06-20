@@ -143,7 +143,7 @@ export class AcWebCallingStack extends cdk.Stack {
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       enforceSSL: true,
     });
-  
+
     const logBucket = new s3.Bucket(this, 'CloudFrontLogsBucket', {
       encryption: s3.BucketEncryption.S3_MANAGED,
       removalPolicy: cdk.RemovalPolicy.RETAIN,
@@ -151,17 +151,17 @@ export class AcWebCallingStack extends cdk.Stack {
       enforceSSL: true,
       objectOwnership: s3.ObjectOwnership.OBJECT_WRITER,
     });
-  
+
     this.setLogBucketAcl(logBucket);
-  
+
     const originAccessControl = new cloudfront.S3OriginAccessControl(this, 'MyOAC', {
       signing: cloudfront.Signing.SIGV4_NO_OVERRIDE
     });
-  
+
     const s3Origin = origins.S3BucketOrigin.withOriginAccessControl(s3Bucket, { originAccessControl });
-  
+
     const distribution = new cloudfront.Distribution(this, 'Distribution', {
-      defaultBehavior: { 
+      defaultBehavior: {
         origin: s3Origin,
         viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
         cachePolicy: cloudfront.CachePolicy.CACHING_DISABLED,
@@ -185,11 +185,11 @@ export class AcWebCallingStack extends cdk.Stack {
       logFilePrefix: 'cloudfront-logs/',
       logIncludesCookies: true,
     });
-  
+
     this.addS3BucketPolicy(s3Bucket, distribution);
-  
+
     return { s3Bucket, logBucket, distribution };
-  }  
+  }
 
   private addS3BucketPolicy(s3Bucket: s3.Bucket, distribution: cloudfront.Distribution) {
     s3Bucket.addToResourcePolicy(new iam.PolicyStatement({
@@ -220,7 +220,7 @@ export class AcWebCallingStack extends cdk.Stack {
       })
     });
   }
-  
+
   private deployWebsiteContent(s3Bucket: s3.Bucket, distribution: cloudfront.Distribution) {
     new s3deploy.BucketDeployment(this, 'DeployWebsite', {
       sources: [s3deploy.Source.asset(path.join(__dirname, '../website'))],

@@ -10,7 +10,7 @@ import * as AcWebCalling from '../lib/ac_web_calling-stack';
 test('Lambda Function Created', () => {
   const app = new cdk.App();
   const stack = new AcWebCalling.AcWebCallingStack(app, 'MyTestStack');
-  const template = Template.fromStack(stack);   
+  const template = Template.fromStack(stack);
   template.hasResourceProperties('AWS::Lambda::Function', {
     Environment: {
         Variables: {

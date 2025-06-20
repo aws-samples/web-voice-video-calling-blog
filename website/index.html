@@ -53,22 +53,22 @@
     <header>
         <h1>Amazon Connect Web Calling and Video experience</h1>
     </header>
-    
+
     <section id="about">
         <h2>Omnichannel customer experience</h2>
         <p>Amazon Connect’s in-app, web, and video calling capabilities make it easy to deliver personalized voice and video experiences in your websites and mobile applications. Using the fully managed communication widget or SDK, you can implement Connect’s in-app, web, and video calling capabilities with as little as a single line of code. These voice and video features enable customers to contact you without ever having to leave your web or mobile application </p>
-        <p><a href="https://aws.amazon.com/connect/" target="_blank">Learn more&nbsp;»</a></p> 
+        <p><a href="https://aws.amazon.com/connect/" target="_blank">Learn more&nbsp;»</a></p>
     </section>
-    
+
     <section id="contact">
         <h2>Contact Us</h2>
         <form id="contact-form">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
-            
+
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
-            
+
             <label for="reason">Contact Reason:</label>
             <select id="reason" name="reason">
                 <option value="Open a new account">Open a new account</option>
@@ -76,7 +76,7 @@
                 <option value="Raise a Complaint">Raise a Complaint</option>
                 <option value="Other">Other</option>
             </select>
-            
+
             <label for="message">Message:</label>
             <textarea id="message" name="message" rows="2" required></textarea>
             <button type="button" id="submit-button">Submit</button>
@@ -122,17 +122,17 @@
 
 
             /* Your Connect Widget ends here */
-    
+
             /* Your API endpoint goes here */
             const apiEndpoint = "https://aaaaaaaaaa.execute-api.eu-west-2-1.amazonaws.com/prod/";
-            /* Your API endpoint goes here */   
+            /* Your API endpoint goes here */
             amazon_connect('authenticate', function (callback) {
                 window.fetch(apiEndpoint, {
                             method: "POST", // Replace with the appropriate HTTP method (GET, POST, etc.)
                             headers: {
                                 "Content-Type": "application/json"
                             },
-                            body: JSON.stringify(data)  
+                            body: JSON.stringify(data)
                         }
                         ).then(res => {
                     res.json().then(data => {

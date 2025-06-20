@@ -9,7 +9,7 @@ jspm_packages/
 .cdk.staging
 cdk.out
 lambda-layers
-# CDK remove js files 
+# CDK remove js files
 bin/*.js
 lib/*.js
 bin/*.d.ts

@@ -8,11 +8,11 @@ const { SSMClient, GetParameterCommand } = require("@aws-sdk/client-ssm");
  * Gets SSM parameter value from AWS SSM service.
  *
  * @async
- * @param {string} paramName - The name of the SSM parameter 
+ * @param {string} paramName - The name of the SSM parameter
  * @param {boolean} withDecryption - Whether to decrypt the secured parameter
  * @returns {Promise<string|null>} Promise resolving to parameter value or null if lookup failed
  *
- * @example 
+ * @example
  * const connect_secret = await getSSMParameterValue('/Blog/AcWebCalling/AmazonConnect/ConnectSecret', true);
  *
  */
@@ -36,10 +36,10 @@ async function getSSMParameterValue(paramName, withDecryption) {
 
 /**
  * Lambda function handler to generate token for Amazon Connect chat widget.
- * 
+ *
  * @async
  * @param {object} event - Lambda function event
- * @returns {object} - Lambda function response 
+ * @returns {object} - Lambda function response
  * @returns {number} return.statusCode - HTTP status code
  * @returns {object} return.headers - Response headers
  * @returns {string} return.body - Response body containing generated token
